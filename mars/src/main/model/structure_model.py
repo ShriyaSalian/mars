@@ -32,7 +32,7 @@ def add_templates_to_structure(structure, templates):
     return structure
 
 
-def make_structure_closure(add_date=utils.get_timestamp(), setup=True):
+def make_structure_closure(add_date=general_utils.get_timestamp(), setup=True):
 
     def get_setup_keys():
         return ['template_directory']

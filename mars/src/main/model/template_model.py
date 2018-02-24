@@ -67,7 +67,7 @@ def copy_fields(template):
     return deepcopy(fields)
 
 
-def update_remove_date(template, remove_date=utils.get_timestamp()):
+def update_remove_date(template, remove_date=general_utils.get_timestamp()):
     """Sets the remove date for a given template, returning the updated template.
     """
     template['remove_date'] = str(remove_date)
@@ -83,7 +83,7 @@ def adjust_template_collection(template):
     return template
 
 
-def make_template_closure(structure, add_date=utils.get_timestamp(), setup=True):
+def make_template_closure(structure, add_date=general_utils.get_timestamp(), setup=True):
     """Closure function returning the function that creates a structure template.
     """
 
