@@ -2,6 +2,9 @@ from setuptools import setup, find_packages
 setup(
     name='mars',
     packages=find_packages(),
+    install_requires=[
+          'pythoncommons'
+      ],
     version='0.0.1',
     description='Mostly Abstract Rest Structures',
     author='Ryan Berkheimer',
