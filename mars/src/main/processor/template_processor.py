@@ -157,7 +157,7 @@ def set_template_removal_date(database, template, remove_date):
     return template
 
 
-def create_new_template(database, structure, template, order=None, setup=False, add_date=utils.get_timestamp()):
+def create_new_template(database, structure, template, order=None, setup=False, add_date=general_utils.get_timestamp()):
     """Creates the passed template using the given structure in the given database.
     Returns the newly created template. If setup is specified as True, loads from
     a filesystem type setup.
@@ -219,7 +219,7 @@ def make_templates_from_filesystem_closure(database, profile=None):
         """
         structure = processor_utils.get_fully_qualified_paths(database, structure, profile=profile)
         templates = get_templates_from_filesystem(structure)
-        template_maker = template_model.make_template_closure(structure, utils.get_timestamp())
+        template_maker = template_model.make_template_closure(structure, general_utils.get_timestamp())
         templates = list(map(template_maker, templates))
         return templates
 
@@ -234,7 +234,7 @@ def add_templates_from_filesystem(database, structures, profile=None):
         structures = [structures]
     template_maker = make_templates_from_filesystem_closure(database, profile=profile)
     templates = list(map(template_maker, structures))
-    templates = utils.flatten(templates, [])
+    templates = general_utils.flatten(templates, [])
     templates = create_template_collection(database, templates)
     templates = get_current_templates(database)
     return templates

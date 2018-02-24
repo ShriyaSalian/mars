@@ -28,7 +28,7 @@ def get_record_by_id(database, template, record_id):
         collection = template['collection']
     else:
         collection = template
-    record = rec general_utils.ao.get_record_by_id(database, collection, record_id)
+    record = record_dao.get_record_by_id(database, collection, record_id)
     return record
 
 
