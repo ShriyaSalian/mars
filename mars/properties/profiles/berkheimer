@@ -1,0 +1,7 @@
+structures = {properties}/structures
+properties = {project}/properties
+project = /users/rberkheimer/projects/ghcn_data/ghcn_data
+data = /users/rberkheimer/data/ghcnm-pha/20150131-mini
+internal_data = {project}/data
+template = {project}/web/html
+static = {project}/web

@@ -1,0 +1,2 @@
+recursive-include mars/properties *
+recursive-include mars/scribbles *
