@@ -2,7 +2,7 @@ import mars.src.main.dao.mongo.template_dao as template_dao
 import mars.src.main.model.template_model as template_model
 from . import structure_processor
 import mars.src.main.processor.generic_processor as processor_utils
-from python_commons import directory_tools, property_reader, utils
+from pythoncommons import directory_utils, property_reader_utils, general_utils
 from collections import OrderedDict
 
 

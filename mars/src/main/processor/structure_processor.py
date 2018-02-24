@@ -3,7 +3,7 @@ import mars.src.main.processor.profile_processor as profile_processor
 import mars.src.main.processor.template_processor as template_processor
 import mars.src.main.model.structure_model as structure_model
 import mars.src.main.processor.generic_processor as processor_utils
-from python_commons import directory_tools, property_reader, utils
+from pythoncommons import directory_utils, property_reader_utils, general_utils
 from collections import OrderedDict
 
 

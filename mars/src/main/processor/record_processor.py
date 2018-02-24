@@ -2,7 +2,7 @@ import mars.src.main.dao.mongo.record_dao as record_dao
 import mars.src.main.model.record_model as record_model
 import mars.src.main.processor.generic_processor as processor_utils
 import mars.src.main.processor.template_processor as template_processor
-from python_commons import utils, record_reader
+from pythoncommons import general_utils, record_reader_utils
 from collections import OrderedDict
 
 

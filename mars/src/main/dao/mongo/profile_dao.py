@@ -1,12 +1,12 @@
-from python_commons import db_utils, utils
+from pythoncommons import mongo_utils, general_utils
 
 
 def get_profile_collection(database):
     """Connects to the database and returns a pointer
     to the profiles collection.
     """
-    connection = db_utils.mongo_get_connection(database)
-    collection = db_utils.mongo_get_collection(connection, "mars_profiles")
+    connection = mongo_utils.mongo_get_connection(database)
+    collection = mongo_utils.mongo_get_collection(connection, "mars_profiles")
     return collection
 
 
@@ -16,7 +16,7 @@ def create_profile_collection(database, profile):
     Returns the added profile.
     """
     collection = get_profile_collection(database)
-    profile_id = db_utils.mongo_insert_one(collection, profile)
+    profile_id = mongo_utils.mongo_insert_one(collection, profile)
     return get_profile_by_id(database, profile_id)
 
 
@@ -24,7 +24,7 @@ def remove_profile_collection(database):
     """Completely blows away the profile collection.
     """
     collection = get_profile_collection(database)
-    status = db_utils.mongo_remove_collection(collection)
+    status = mongo_utils.mongo_remove_collection(collection)
     return status
 
 
@@ -33,11 +33,11 @@ def get_profile_by_name(database, name):
     """
     collection = get_profile_collection(database)
     arguments = []
-    arguments.append(db_utils.make_single_field_argument('name', name))
-    arguments.append(db_utils.make_single_field_argument('remove_date', None))
+    arguments.append(mongo_utils.make_single_field_argument('name', name))
+    arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
     argument = utils.merge_list_of_dicts(arguments)
-    cursor = db_utils.mongo_find_records(collection, argument=argument)
-    profile_list = db_utils.unload_cursor(cursor)
+    cursor = mongo_utils.mongo_find_records(collection, argument=argument)
+    profile_list = mongo_utils.unload_cursor(cursor)
     try:
         return profile_list[0]
     except IndexError:
@@ -49,11 +49,11 @@ def get_profile_by_id(database, profile_id):
     """
     collection = get_profile_collection(database)
     arguments = []
-    arguments.append(db_utils.make_single_field_argument('_id', profile_id))
-    arguments.append(db_utils.make_single_field_argument('remove_date', None))
+    arguments.append(mongo_utils.make_single_field_argument('_id', profile_id))
+    arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
     argument = utils.merge_list_of_dicts(arguments)
-    cursor = db_utils.mongo_find_records(collection, argument=argument)
-    profile_list = db_utils.unload_cursor(cursor)
+    cursor = mongo_utils.mongo_find_records(collection, argument=argument)
+    profile_list = mongo_utils.unload_cursor(cursor)
     try:
         return profile_list[0]
     except IndexError:
@@ -65,11 +65,11 @@ def get_default_profile(database):
     """
     collection = get_profile_collection(database)
     arguments = []
-    arguments.append(db_utils.make_single_field_argument('default', True))
-    arguments.append(db_utils.make_single_field_argument('remove_date', None))
+    arguments.append(mongo_utils.make_single_field_argument('default', True))
+    arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
     argument = utils.merge_list_of_dicts(arguments)
-    cursor = db_utils.mongo_find_records(collection, argument=argument)
-    profile_list = db_utils.unload_cursor(cursor)
+    cursor = mongo_utils.mongo_find_records(collection, argument=argument)
+    profile_list = mongo_utils.unload_cursor(cursor)
     try:
         return profile_list[0]
     except IndexError:

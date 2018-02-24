@@ -1,4 +1,4 @@
-from python_commons import utils
+from pythoncommons import general_utils
 
 
 def add_template(structure, template_name, order=None):

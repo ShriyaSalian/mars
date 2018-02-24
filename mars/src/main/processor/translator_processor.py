@@ -1,7 +1,7 @@
 import mars.src.main.dao.mongo.translator_dao as translator_dao
 import mars.src.main.model.translator_model as translator_model
 import mars.src.main.processor.generic_processor as processor_utils
-from python_commons import directory_tools, property_reader, utils
+from pythoncommons import directory_utils, property_reader_utils, general_utils
 
 
 def create_translator_collection(database, translators=None):

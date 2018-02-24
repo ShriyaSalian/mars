@@ -1,7 +1,7 @@
 import mars.src.main.dao.filesystem.filesystem_dao as file_dao
 import mars.src.main.model.profile_model as profile_model
 import mars.src.main.dao.mongo.profile_dao as profile_dao
-from python_commons import utils
+from pythoncommons import general_utils
 
 
 def make_profile_from_filesystem(profile=None, default=False, full_path=True, profile_name=None):

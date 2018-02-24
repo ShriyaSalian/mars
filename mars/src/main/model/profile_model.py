@@ -1,4 +1,4 @@
-from python_commons import utils
+from pythoncommons import general_utils
 
 
 def make_profile(profile, profile_dictionary, profile_name, full_path):

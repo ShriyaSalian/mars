@@ -1,5 +1,5 @@
 import os
-from python_commons import property_reader
+from pythoncommons import property_reader_utils
 
 
 def get_dictionary_by_profile(path, full_path=False):

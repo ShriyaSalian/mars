@@ -1,4 +1,4 @@
-from python_commons import utils
+from pythoncommons import general_utils
 from copy import deepcopy
 from collections import OrderedDict
 import mars.src.main.model.generic_model as generic_model
