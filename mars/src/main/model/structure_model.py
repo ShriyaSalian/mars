@@ -65,7 +65,7 @@ def make_structure_closure(add_date=utils.get_timestamp(), setup=True):
 
     def move_setup_properties(structure):
         structure['setup'] = {key: structure[key] for key in get_setup_keys()}
-        utils.remove_dictionary_keys(structure, get_setup_keys())
+        general_utils.remove_dictionary_keys(structure, get_setup_keys())
         return structure
 
     return make_structure

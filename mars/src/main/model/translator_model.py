@@ -55,7 +55,7 @@ def make_translator_closure(template, add_date):
         source_tool = generic_model.field_converter_closure(source_properties, source_translator_dictionary)
         source_properties = list(map(source_tool, source_properties))
         translator['source'] = list(map(generic_model.combine_fields, list(zip(*source_properties))))[0]
-        utils.remove_dictionary_keys(translator, list(source_translator_dictionary.keys()))
+        general_utils.remove_dictionary_keys(translator, list(source_translator_dictionary.keys()))
         return translator
 
     def add_target(translator):
@@ -64,7 +64,7 @@ def make_translator_closure(template, add_date):
             target_tool = generic_model.field_converter_closure(target_properties, target_translator_dictionary)
             target_properties = list(map(target_tool, target_properties))
             translator['target'] = list(map(generic_model.combine_fields, list(zip(*target_properties))))[0]
-            utils.remove_dictionary_keys(translator, list(target_translator_dictionary.keys()))
+            general_utils.remove_dictionary_keys(translator, list(target_translator_dictionary.keys()))
         else:
             translator['target'] = {}
             translator['target']['structure'] = template['structure']
@@ -74,7 +74,7 @@ def make_translator_closure(template, add_date):
     def add_map(translator):
         map_fields = [key for key in list(translator.keys()) if key.startswith('Target')]
         translator['map'] = {replace_dots(field): replace_dots(translator[field]) for field in map_fields}
-        utils.remove_dictionary_keys(translator, map_fields)
+        general_utils.remove_dictionary_keys(translator, map_fields)
         return translator
 
     def replace_dots(field):
@@ -84,7 +84,7 @@ def make_translator_closure(template, add_date):
             return [element.replace('.', '@') for element in field]
 
     def cleanup(translator):
-        utils.remove_dictionary_keys(translator, get_cleanup_keys())
+        general_utils.remove_dictionary_keys(translator, get_cleanup_keys())
         return translator
 
     return make_translator

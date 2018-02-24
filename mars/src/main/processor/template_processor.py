@@ -194,7 +194,7 @@ def get_current_templates_by_structure_name(database, structure_name):
 def get_template_dictionary_from_file(template_file):
     """Returns a structure as a dictionary from the given file.
     """
-    properties = property_reader.make_dictionary(template_file)
+    properties = property_reader_utils.make_dictionary(template_file)
     properties = {key: processor_utils.adjust_property_value(properties[key])
                   for key in list(properties.keys())}
     properties['template_file'] = template_file
@@ -206,7 +206,7 @@ def get_templates_from_filesystem(structure):
     """
     template_directory = structure['setup']['template_directory']
     search_dictionary = processor_utils.make_search_dictionary(template_directory, 'template')
-    template_files = directory_tools.get_matching_files(search_dictionary)
+    template_files = directory_utils.get_matching_files(search_dictionary)
     templates = list(map(get_template_dictionary_from_file, template_files))
     return templates
 

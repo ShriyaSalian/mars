@@ -6,7 +6,7 @@ def get_dictionary_by_profile(path, full_path=False):
     if not full_path:
         path = replace_relative_path(path, '/src/main/dao/filesystem',
                                      '/properties/profiles/')
-    return property_reader.make_dictionary(path)
+    return property_reader_utils.make_dictionary(path)
 
 
 def replace_relative_path(file_name, relative_target, relative_source):

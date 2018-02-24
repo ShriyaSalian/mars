@@ -59,7 +59,7 @@ def get_translator_by_name(database, name, template, structure):
     arguments.append(mongo_utils.make_single_field_argument('template', template))
     arguments.append(mongo_utils.make_single_field_argument('structure', structure))
     arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
-    argument = utils.merge_list_of_dicts(arguments)
+    argument = general_utils.merge_list_of_dicts(arguments)
     cursor = mongo_utils.mongo_find_records(collection, argument=argument)
     translator_list = mongo_utils.unload_cursor(cursor)
     try:
@@ -75,7 +75,7 @@ def get_translator_by_id(database, translator_id):
     arguments = []
     arguments.append(mongo_utils.make_single_field_argument('_id', translator_id))
     arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
-    argument = utils.merge_list_of_dicts(arguments)
+    argument = general_utils.merge_list_of_dicts(arguments)
     cursor = mongo_utils.mongo_find_records(collection, argument=argument)
     translator_list = mongo_utils.unload_cursor(cursor)
     try:

@@ -78,7 +78,7 @@ def adjust_template_collection(template):
     """Method used to build a unique collection name and add it to the template
     dictionary. Returns the updated template.
     """
-    unique_collection = 'mars_' + utils.get_random_string(numbers=True, length=8)
+    unique_collection = 'mars_' + general_utils.get_random_string(numbers=True, length=8)
     template['collection'] = unique_collection
     return template
 
@@ -144,8 +144,8 @@ def make_template_closure(structure, add_date=utils.get_timestamp(), setup=True)
             if 'template_file' in list(template.keys()):
                 template['name'] = parse_template_file_name(template['template_file'])
             else:
-                template['name'] = 'auto_' + utils.get_random_string(length=10)
-        utils.remove_dictionary_keys(template, ['template_file'])
+                template['name'] = 'auto_' + general_utils.get_random_string(length=10)
+        general_utils.remove_dictionary_keys(template, ['template_file'])
         return template
 
     def adjust_description(template):
@@ -155,7 +155,7 @@ def make_template_closure(structure, add_date=utils.get_timestamp(), setup=True)
 
     def adjust_collection(template):
         if 'collection' not in list(template.keys()):
-            unique_collection = 'mars_' + utils.get_random_string(numbers=True, length=10)
+            unique_collection = 'mars_' + general_utils.get_random_string(numbers=True, length=10)
             template['collection'] = unique_collection
         return template
 
@@ -172,7 +172,7 @@ def make_template_closure(structure, add_date=utils.get_timestamp(), setup=True)
             field_tool = generic_model.field_converter_closure(field_properties, field_translator_dictionary)
             field_properties = list(map(field_tool, field_properties))
             template['fields'] = list(map(generic_model.combine_fields, list(zip(*field_properties))))
-            utils.remove_dictionary_keys(template, list(field_translator_dictionary.keys()))
+            general_utils.remove_dictionary_keys(template, list(field_translator_dictionary.keys()))
         elif 'fields' not in list(template.keys()):
             template['fields'] = []
         return template
@@ -182,7 +182,7 @@ def make_template_closure(structure, add_date=utils.get_timestamp(), setup=True)
         field_tool = generic_model.field_converter_closure(index_properties, index_translator_dictionary)
         index_properties = list(map(field_tool, index_properties))
         template['indeces'] = list(map(generic_model.combine_fields, list(zip(*index_properties))))
-        utils.remove_dictionary_keys(template, list(index_translator_dictionary.keys()))
+        general_utils.remove_dictionary_keys(template, list(index_translator_dictionary.keys()))
         return template
 
     def adjust_translators(template):
@@ -194,7 +194,7 @@ def make_template_closure(structure, add_date=utils.get_timestamp(), setup=True)
 
     def move_setup_properties(template):
         template['setup'] = {key: template[key] for key in get_setup_keys()}
-        utils.remove_dictionary_keys(template, get_setup_keys())
+        general_utils.remove_dictionary_keys(template, get_setup_keys())
         return template
 
     return make_template

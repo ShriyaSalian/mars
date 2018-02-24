@@ -11,7 +11,7 @@ def make_profile(profile, profile_dictionary, profile_name, full_path):
         profile_dictionary['name'] = profile
     profile_dictionary['type'] = 'path'
     profile_dictionary['default'] = False
-    profile_dictionary['add_date'] = utils.get_timestamp()
+    profile_dictionary['add_date'] = general_utils.get_timestamp()
     profile_dictionary['remove_date'] = None
     return profile_dictionary
 
@@ -26,7 +26,7 @@ def make_default_profile(profile, profile_dictionary, profile_name, full_path):
         profile_dictionary['name'] = profile
     profile_dictionary['type'] = 'path'
     profile_dictionary['default'] = True
-    profile_dictionary['add_date'] = utils.get_timestamp()
+    profile_dictionary['add_date'] = general_utils.get_timestamp()
     profile_dictionary['remove_date'] = None
 
     return profile_dictionary
@@ -37,7 +37,7 @@ def add_keys_to_existing_profile(profile_dictionary, default=True):
     """
     profile_dictionary['name'] = 'default'
     profile_dictionary['type'] = 'path'
-    profile_dictionary['add_date'] = utils.get_timestamp()
+    profile_dictionary['add_date'] = general_utils.get_timestamp()
     profile_dictionary['remove_date'] = None
     profile_dictionary['default'] = default
     return profile_dictionary

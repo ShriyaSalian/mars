@@ -28,7 +28,7 @@ def get_record_by_id(database, template, record_id):
         collection = template['collection']
     else:
         collection = template
-    record = record_dao.get_record_by_id(database, collection, record_id)
+    record = rec general_utils.ao.get_record_by_id(database, collection, record_id)
     return record
 
 
@@ -64,7 +64,7 @@ def get_records_from_filesystem(translator):
     """Retrieves records from the filesystem, based on information gathered from the
     translator.
     """
-    return record_reader.get_records_from_file(translator['variables'])
+    return record_reader_utils.get_records_from_file(translator['variables'])
 
 
 def make_records_from_translator(database, translator, profile=None, parameters=None):
@@ -94,7 +94,7 @@ def make_records_from_filesystem_closure(database, profile=None):
         records = get_records_from_filesystem(translator)
         template = template_processor.get_template_by_name(translator['structure'],
                                                            translator['template'])
-        record_maker = record_model.make_record_closure(template, translator, utils.get_timestamp())
+        record_maker = record_model.make_record_closure(template, translator, general_utils.get_timestamp())
         records = list(map(record_maker, records))
         return records
 
@@ -109,5 +109,5 @@ def add_records_from_filesystem(translators, profile=None):
         translators = [translators]
     record_maker = make_records_from_filesystem_closure(profile=profile)
     records = list(map(record_maker, translators))
-    records = utils.flatten(records, [])
+    records = general_utils.flatten(records, [])
     return records

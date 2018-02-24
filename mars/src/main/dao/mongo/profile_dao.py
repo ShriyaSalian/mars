@@ -35,7 +35,7 @@ def get_profile_by_name(database, name):
     arguments = []
     arguments.append(mongo_utils.make_single_field_argument('name', name))
     arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
-    argument = utils.merge_list_of_dicts(arguments)
+    argument = general_utils.merge_list_of_dicts(arguments)
     cursor = mongo_utils.mongo_find_records(collection, argument=argument)
     profile_list = mongo_utils.unload_cursor(cursor)
     try:
@@ -51,7 +51,7 @@ def get_profile_by_id(database, profile_id):
     arguments = []
     arguments.append(mongo_utils.make_single_field_argument('_id', profile_id))
     arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
-    argument = utils.merge_list_of_dicts(arguments)
+    argument = general_utils.merge_list_of_dicts(arguments)
     cursor = mongo_utils.mongo_find_records(collection, argument=argument)
     profile_list = mongo_utils.unload_cursor(cursor)
     try:
@@ -67,7 +67,7 @@ def get_default_profile(database):
     arguments = []
     arguments.append(mongo_utils.make_single_field_argument('default', True))
     arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
-    argument = utils.merge_list_of_dicts(arguments)
+    argument = general_utils.merge_list_of_dicts(arguments)
     cursor = mongo_utils.mongo_find_records(collection, argument=argument)
     profile_list = mongo_utils.unload_cursor(cursor)
     try:

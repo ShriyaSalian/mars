@@ -23,7 +23,7 @@ def remove_translator_collection(database):
 def get_translator_dictionary_from_file(translator_file):
     """Returns a translator as a dictionary from the given file.
     """
-    properties = property_reader.make_dictionary(translator_file)
+    properties = property_reader_utils.make_dictionary(translator_file)
     properties = {key: processor_utils.adjust_property_value(properties[key])
                   for key in list(properties.keys())}
     properties['translator_file'] = translator_file
@@ -35,7 +35,7 @@ def get_translators_from_filesystem(template):
     """
     translator_directory = template['setup']['translator_directory']
     search_dictionary = processor_utils.make_search_dictionary(translator_directory, 'translator')
-    translator_files = directory_tools.get_matching_files(search_dictionary)
+    translator_files = directory_utils.get_matching_files(search_dictionary)
     translators = list(map(get_translator_dictionary_from_file, translator_files))
     return translators
 
@@ -48,7 +48,7 @@ def make_translators_from_filesystem_closure(database, profile=None):
         """
         template = processor_utils.get_fully_qualified_paths(database, template, profile=profile)
         translators = get_translators_from_filesystem(template)
-        translator_maker = translator_model.make_translator_closure(template, utils.get_timestamp())
+        translator_maker = translator_model.make_translator_closure(template, general_utils.get_timestamp())
         translators = list(map(translator_maker, translators))
         return translators
 
@@ -63,7 +63,7 @@ def add_translators_from_filesystem(database, templates, profile=None):
         templates = [templates]
     translator_maker = make_translators_from_filesystem_closure(database, profile=profile)
     translators = list(map(translator_maker, templates))
-    translators = utils.flatten(translators, [])
+    translators = general_utils.flatten(translators, [])
     translators = create_translator_collection(database, translators)
     translators = get_current_translators(database)
     return translators

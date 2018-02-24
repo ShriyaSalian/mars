@@ -28,7 +28,7 @@ def get_fully_qualified_profile(database, profile=None):
     else:
         profile = get_default_profile(database)
     try:
-        utils.get_fully_qualified_dictionary_values(profile)
+        general_utils.get_fully_qualified_dictionary_values(profile)
     except:
         pass
     return profile

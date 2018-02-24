@@ -42,7 +42,7 @@ def get_all_structures(database, args=None):
     collection = get_structure_collection(database)
     if args:
         arguments = [mongo_utils.make_single_field_argument(arg['key'], arg['value'], arg_type=arg['operation']) for arg in args]
-        argument = utils.merge_list_of_dicts(arguments)
+        argument = general_utils.merge_list_of_dicts(arguments)
         cursor = mongo_utils.mongo_find_records(collection, argument=argument)
     else:
         cursor = mongo_utils.mongo_find_records(collection)
@@ -57,7 +57,7 @@ def get_current_structures(database, args=None):
     if args:
         arguments = [mongo_utils.make_single_field_argument(arg['key'], arg['value'], arg_type=arg['operation']) for arg in args]
     arguments.append(mongo_utils.make_single_field_argument("remove_date", None))
-    argument = utils.merge_list_of_dicts(arguments)
+    argument = general_utils.merge_list_of_dicts(arguments)
     cursor = mongo_utils.mongo_find_records(collection, argument=argument)
     return mongo_utils.unload_cursor(cursor)
 
@@ -69,7 +69,7 @@ def get_structure_by_name(database, name):
     arguments = []
     arguments.append(mongo_utils.make_single_field_argument('name', name))
     arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
-    argument = utils.merge_list_of_dicts(arguments)
+    argument = general_utils.merge_list_of_dicts(arguments)
     cursor = mongo_utils.mongo_find_records(collection, argument=argument)
     structure_list = mongo_utils.unload_cursor(cursor)
     try:
@@ -86,7 +86,7 @@ def get_structure_by_id(database, structure_id):
     arguments = []
     arguments.append(mongo_utils.make_single_field_argument('_id', structure_id))
     arguments.append(mongo_utils.make_single_field_argument('remove_date', None))
-    argument = utils.merge_list_of_dicts(arguments)
+    argument = general_utils.merge_list_of_dicts(arguments)
     cursor = mongo_utils.mongo_find_records(collection, argument=argument)
     structure_list = mongo_utils.unload_cursor(cursor)
     try:

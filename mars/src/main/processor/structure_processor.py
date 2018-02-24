@@ -120,7 +120,7 @@ def get_structures_from_filesystem(structure_directory):
     Returns a list of the structure dictionary objects.
     """
     search_dictionary = processor_utils.make_search_dictionary(structure_directory, 'definition')
-    structure_files = directory_tools.get_matching_files(search_dictionary)
+    structure_files = directory_utils.get_matching_files(search_dictionary)
     structures = list(map(get_structure_dictionary_from_file, structure_files))
     return structures
 
@@ -132,7 +132,7 @@ def add_structures_from_filesystem(database, profile=None):
     profile = profile_processor.get_fully_qualified_profile(database, profile)
     structure_directory = profile['structures']
     structures = get_structures_from_filesystem(structure_directory)
-    structure_tool = structure_model.make_structure_closure(utils.get_timestamp())
+    structure_tool = structure_model.make_structure_closure(general_utils.get_timestamp())
     structures = list(map(structure_tool, structures))
     create_structure_collection(database, structures)
     structures = get_current_structures(database)
@@ -162,7 +162,7 @@ def get_all_structures(database, args=None):
 def get_structure_dictionary_from_file(structure_file):
     """Returns a structure as a dictionary from the given file.
     """
-    properties = property_reader.make_dictionary(structure_file)
+    properties = property_reader_utils.make_dictionary(structure_file)
     properties = {key: processor_utils.adjust_property_value(properties[key])
                   for key in list(properties.keys())}
     return properties
